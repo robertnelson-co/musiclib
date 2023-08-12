@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react';
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
 import { DataContext } from './context/DataContext';
+import { SearchContext } from './context/SearchContext';
 
 function App() {
   let [message, setMessage] = useState('Seach for music')
@@ -29,6 +30,12 @@ function App() {
   }
   return (
     <div className="App">
+      <SearchContext.Provider value={{
+        term: searchInput,
+        handleSearch: handleSearch
+      }}>
+        
+      </SearchContext.Provider>
       <SearchBar handleSearch={handleSearch}/>
       {message}
       <DataContext.Provider value={data}></DataContext.Provider>
